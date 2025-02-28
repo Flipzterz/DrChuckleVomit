@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beware of The Vomit</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/ico" href="icon/favicon.ico">
+    <img src="/images/flames.gif" alt="GIF" class="global-gif">
+    
+    <style>
+        /* Image stretching animation */
+        .stretch-spin {
+            position: relative;
+            top: 50px;
+            animation: stretch-shrink 5s infinite ease-in-out;
+        }
+
+        /* Define the keyframes for a smooth stretch and shrink effect */
+        @keyframes stretch-shrink {
+            0% {
+                transform: scaleX(-2); /* Normal width */
+            }
+            25% {
+                transform: scaleX(2); /* Stretched out */
+            }
+            50% {
+                transform: scaleX(-2); /* Stretched out and flipped */
+            }
+            75% {
+                transform: scaleX(2); /* Stretched out again */
+            }
+            100% {
+                transform: scaleX(-2); /* Back to normal width */
+            }
+        }
+
+        /* Global GIF settings (doesn't get affected by stretch) */
+        .global-gif {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        /* Style for the start button */
+        .start-button {
+            font-size: 20px;
+            padding: 10px 20px;
+            background-color: #ff5c5c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            z-index: 20;
+        }
+
+        .start-button:hover {
+            background-color: #ff1e1e;
+        }
+
+        /* Style for the restart button */
+        .restart-button {
+            font-size: 20px;
+            padding: 10px 20px;
+            background-color: #008CBA;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: none; /* Hidden by default */
+            z-index: 20;
+        }
+
+        .restart-button:hover {
+            background-color: #005f6a;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="navbar-container"></div>
+
+    <script>
+        fetch("navbar.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("navbar-container").innerHTML = data;
+            });
+    </script>
+
+    <!-- The Audio Element for Background Music -->
+    <audio id="background-audio">
+        <source src="/music/oops.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Start Music Button -->
+    <button class="start-button" id="start-music-button">Start Music</button>
+
+    <!-- Restart Music Button -->
+    <button class="restart-button" id="restart-music-button">Restart Music</button>
+
+    <h1>Dr. ChuckleVomit's Website of Evil Hell</h1>
+    <img src="images/TheDoctor.png" alt="The Doctor" class="stretch-spin">
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let audioElement = document.getElementById('background-audio');
+            let startButton = document.getElementById('start-music-button');
+            let restartButton = document.getElementById('restart-music-button');
+
+            // Handle the click on the "Start Music" button
+            startButton.addEventListener('click', function() {
+                audioElement.play().then(function() {
+                    console.log("Audio started playing.");
+                    startButton.style.display = "none"; // Hide the start button after clicking
+                }).catch(function(error) {
+                    console.log("Audio play failed:", error);
+                });
+            });
+
+            // Handle the click on the "Restart Music" button
+            restartButton.addEventListener('click', function() {
+                audioElement.currentTime = 0; // Reset to the beginning
+                audioElement.play().then(function() {
+                    console.log("Audio restarted.");
+                    restartButton.style.display = "none"; // Hide the restart button after clicking
+                    startButton.style.display = "none"; // Hide the start button after clicking
+                }).catch(function(error) {
+                    console.log("Audio restart failed:", error);
+                });
+            });
+
+            // Show the restart button when the audio ends
+            audioElement.addEventListener('ended', function() {
+                restartButton.style.display = "inline-block"; // Show the restart button when the audio ends
+            });
+        });
+
+        // Cycle through titles every frame
+        let titles = ["Beware of The Vomit", "Dr. ChuckleVomit is Evil", "This Website is Evil", "Turn Back Now", "You Have Been Warned", "NOT SAFE!!"]; 
+        let index = 0;
+        setInterval(() => {
+            document.title = titles[index];
+            index = (index + 1) % titles.length;
+        }, 10);
+    </script>
+
+</body>
+</html>

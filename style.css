@@ -1,0 +1,69 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    color: white;
+}
+
+html, body {
+    height: 100%; /* Ensure full viewport height */
+    margin: 0; /* Remove default margin */
+    background: url('/images/theHorror.gif') no-repeat center center fixed; /* Set the GIF as background */
+    background-size: cover; /* Ensure the background fills the entire viewport */
+    z-index: -2; /* Puts the GIF behind the content */
+}
+
+html, body {
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    height: 100%; /* Ensure the body takes the full height of the viewport */
+    overflow: hidden; /* Prevent scrolling */
+  }
+
+/* Navbar styles */
+.navbar {
+    position: fixed; /* Keeps it at the top even when scrolling */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: black;
+    padding: 15px 0;
+    display: flex;
+    justify-content: center; /* Centers the links */
+    align-items: center;
+    z-index: 1000; /* Ensures it's above other content */
+}
+
+.global-gif {
+ width: 100vw; /* 100% of the viewport width */
+  height: 100vh; /* 100% of the viewport height */
+  object-fit: cover; /* Ensures the GIF scales proportionally without distortion */
+  position: absolute; /* Take it out of the document flow */
+  top: 0; /* Align to the top of the viewport */
+  left: 0; /* Align to the left of the viewport */
+  z-index: -1; /* Puts the GIF behind the content */
+  }
+
+/* Navbar links */
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin: 0 20px; /* Adds spacing between links */
+    font-size: 18px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.navbar a:hover {
+    color: #ff5555;
+}
+
+/* Push content down so it doesn't overlap with navbar */
+body {
+    padding-top: 60px; /* Adjust this if navbar height changes */
+}

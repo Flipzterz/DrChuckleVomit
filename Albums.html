@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Albums</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/ico" href="icon/favicon.ico">
+    <img src="/images/flames.gif" alt="GIF" class="global-gif">
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #222;
+            color: white;
+            text-align: center;
+            padding-top: -20;
+            z-index: 20;
+            position: relative; /* Add position relative for the body */
+        }
+
+        h1 {
+            position: relative;
+            z-index: 10; /* Ensure it's above the GIF */
+        }
+
+        .album-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            z-index: 10; /* Ensure it's above the GIF */
+            position: relative; /* Add position relative for the album container */
+        }
+
+        .album {
+            background-color: #333;
+            padding: -10px;
+            border-radius: 10px;
+            z-index: 10; /* Ensure it's above the GIF */
+        }
+
+        .album img {
+            width: 100%;
+            border-radius: 10px;
+            z-index: 10; /* Ensure it's above the GIF */
+        }
+
+        .album a {
+            display: block; /* Ensure the link takes up the full space of the album */
+            text-decoration: none; /* Remove underline */
+            color: inherit; /* Inherit the color from parent */
+            z-index: 10; /* Ensure it's above the GIF */
+        }
+
+        .album-title {
+            margin-top: 10px;
+            font-size: 16px;
+            z-index: 10; /* Ensure it's above the GIF */
+        }
+
+        .global-gif {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0; /* Place it behind other elements */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Albums</h1>
+
+    <div class="album-container">
+        <a href="https://www.youtube.com/playlist?list=PLwJub2MAuV5zYUVTnZ_vzbi4hCaFQ_Eqc" class="album">
+            <img src="images/hqdefault (1).png" alt="Album 1">
+        </a>
+        <div class="album-title">Quanky goes to OBlock</div>
+        
+        <a href="https://www.youtube.com/playlist?list=PLwJub2MAuV5yjbgsFgfuOhbSbvC9hWXQh" class="album">
+            <img src="images/hqdefault (2).png" alt="Album 2">
+        </a>
+        <div class="album-title">The Great Disintegration Man</div>
+        
+        <a href="https://www.youtube.com/playlist?list=PLwJub2MAuV5zqZCXcd_wDObdhi24am52M" class="album">
+            <img src="images/hqdefault.png" alt="Album 3">
+        </a>
+        <div class="album-title">Young, Wild and Full of Cheese</div>
+    </div>
+
+    <div id="navbar-container"></div>
+
+    <script>
+        fetch("navbar.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("navbar-container").innerHTML = data;
+            });
+    </script>
+
+</body>
+</html>
